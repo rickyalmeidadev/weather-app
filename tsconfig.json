@@ -8,6 +8,6 @@
       "@env": [".env.json"],
       "@testing-library": ["testing-library.config.ts"]
     },
-    "typeRoots": ["./src/types"]
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   }
 }

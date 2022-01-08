@@ -1,0 +1,13 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/*"],
+      "@env": [".env.json"],
+      "@testing-library": ["testing-library.config.ts"]
+    },
+    "typeRoots": ["./src/types"]
+  }
+}

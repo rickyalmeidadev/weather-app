@@ -27,17 +27,19 @@ it('dispatches the correct actions when resolved', async () => {
 });
 
 it('dispatches the correct actions when rejected', async () => {
-  const error = new Error('Request failed with status code 500');
   const handler = rest.get(
     'https://api.openweathermap.org/data/2.5/weather',
     (request, response, context) =>
-      response(context.status(500), context.json(error)),
+      response(context.status(500), context.json(MockedOpenWeather.error)),
   );
   server.use(handler);
   const dispatch = jest.fn();
   const actions = [
     { type: WeatherActionTypes.FETCH_WEATHER_REQUEST },
-    { type: WeatherActionTypes.FETCH_WEATHER_FAILURE, payload: error },
+    {
+      type: WeatherActionTypes.FETCH_WEATHER_FAILURE,
+      payload: MockedOpenWeather.error,
+    },
   ];
   const thunk = getWeatherByCoords(coords);
   await thunk(dispatch, getState, null);

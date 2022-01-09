@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, ScrollView, Text } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -8,7 +8,6 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
-import { useAppDispatch, useAppSelector } from '@app/hooks';
 import store from '@app/store';
 import { getWeatherByCoords } from '@app/store/weather';
 import { makeStyles } from '@app/utils';
@@ -38,8 +37,8 @@ const App = () => {
 
 const Weather = () => {
   const styles = useStyles();
-  const data = useAppSelector(state => state);
-  const dispatch = useAppDispatch();
+  const data = useSelector(state => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const latitude = -23.5475;

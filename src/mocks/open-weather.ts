@@ -29,8 +29,11 @@ const data: OpenWeatherResponse = {
   cod: 200,
 };
 
+const error = new Error('Request failed with status code 500');
+
 const MockedOpenWeather = {
   data,
+  error,
 };
 
 export default MockedOpenWeather;

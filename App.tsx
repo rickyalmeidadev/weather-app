@@ -32,7 +32,7 @@ const App = () => {
   );
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(({ theme }) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,

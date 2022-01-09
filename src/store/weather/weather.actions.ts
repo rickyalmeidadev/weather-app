@@ -1,12 +1,13 @@
 import { getCurrentWeatherByCoords } from '@app/services/open-weather';
 import { WeatherActionTypes } from './weather.types';
 import type { ThunkAction } from 'redux-thunk';
+import type { RootState } from '@app/store';
 import type { Coords } from '@app/types/location';
 import type { WeatherAction } from './weather.types';
 
 type GetWeatherByCoordsThunkAction = ThunkAction<
   Promise<void>,
-  any,
+  RootState,
   null,
   WeatherAction
 >;

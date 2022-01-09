@@ -1,12 +1,14 @@
 import React from 'react';
 import { StatusBar, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
-import { useTheme } from '@app/hooks';
+import { useAppSelector, useTheme } from '@app/hooks';
+import store from '@app/store';
 import { makeStyles } from '@app/utils';
 
 const App = () => {
@@ -19,17 +21,27 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar
-        backgroundColor={theme.colors.background}
-        barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
-      />
-      <Text style={styles.text}>
-        Open up <Text style={styles.code}>App.tsx</Text> to start working on
-        your app!
-      </Text>
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor={theme.colors.background}
+          barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
+        />
+        <Text style={styles.text}>
+          Open up <Text style={styles.code}>App.tsx</Text> to start working on
+          your app!
+        </Text>
+        <Redux />
+      </View>
+    </Provider>
   );
+};
+
+const Redux = () => {
+  const styles = useStyles();
+  const data = useAppSelector(state => state);
+
+  return <Text style={styles.data}>{JSON.stringify(data, null, 2)}</Text>;
 };
 
 const useStyles = makeStyles(({ theme }) => ({
@@ -48,6 +60,11 @@ const useStyles = makeStyles(({ theme }) => ({
     color: theme.colors.primary,
     fontFamily: theme.fonts.monospace,
     fontSize: theme.metrics.md,
+  },
+  data: {
+    marginTop: theme.metrics.lg,
+    color: theme.colors.text,
+    fontFamily: theme.fonts.monospace,
   },
 }));
 

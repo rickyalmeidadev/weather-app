@@ -1,12 +1,13 @@
-import { getWeatherByCoords } from './weather.actions';
-import { WeatherActionTypes } from './weather.types';
-import type { Coords } from '@app/types/location';
+import { rest } from 'msw';
 import MockedOpenWeather from '@app/mocks/open-weather';
 import server from '@app/mocks/server';
-import { rest } from 'msw';
+import { getWeatherByCoords } from './weather.actions';
+import { WeatherActionTypes } from './weather.types';
+import type { RootState } from '@app/store';
+import type { Coords } from '@app/types/location';
 
 const coords = {} as Coords;
-const getState = () => {};
+const getState = (): RootState => ({} as RootState);
 
 it('dispatches the correct actions when resolved', async () => {
   const dispatch = jest.fn();

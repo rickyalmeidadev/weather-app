@@ -31,7 +31,6 @@ export type Clouds = {
 export type Sys = {
   type: number;
   id: number;
-  message: number;
   country: string;
   sunrise: number;
   sunset: number;

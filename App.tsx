@@ -1,19 +1,20 @@
-import React from 'react';
-import { StatusBar, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, ScrollView, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
-import { useAppSelector, useTheme } from '@app/hooks';
+import { useAppDispatch, useAppSelector } from '@app/hooks';
 import store from '@app/store';
+import { getWeatherByCoords } from '@app/store/weather';
 import { makeStyles } from '@app/utils';
 
 const App = () => {
   const styles = useStyles();
-  const theme = useTheme();
   const [loaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   if (!loaded) {
@@ -22,46 +23,47 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar
-          backgroundColor={theme.colors.background}
-          barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
-        />
-        <Text style={styles.text}>
-          Open up <Text style={styles.code}>App.tsx</Text> to start working on
-          your app!
-        </Text>
-        <Redux />
-      </View>
+      <StatusBar style="auto" />
+      <SafeAreaView style={styles.root}>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.content}
+        >
+          <Weather />
+        </ScrollView>
+      </SafeAreaView>
     </Provider>
   );
 };
 
-const Redux = () => {
+const Weather = () => {
   const styles = useStyles();
   const data = useAppSelector(state => state);
+  const dispatch = useAppDispatch();
 
-  return <Text style={styles.data}>{JSON.stringify(data, null, 2)}</Text>;
+  useEffect(() => {
+    const latitude = -23.5475;
+    const longitude = -46.63611;
+    dispatch(getWeatherByCoords({ latitude, longitude }));
+  }, [dispatch]);
+
+  return <Text style={styles.monospace}>{JSON.stringify(data, null, 2)}</Text>;
 };
 
 const useStyles = makeStyles(({ theme }) => ({
-  container: {
+  root: {
     flex: 1,
     backgroundColor: theme.colors.background,
+  },
+  container: {
+    flex: 1,
+  },
+  content: {
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: theme.metrics.md,
   },
-  text: {
-    color: theme.colors.text,
-    fontFamily: theme.fonts.regular,
-    fontSize: theme.metrics.md,
-  },
-  code: {
-    color: theme.colors.primary,
-    fontFamily: theme.fonts.monospace,
-    fontSize: theme.metrics.md,
-  },
-  data: {
+  monospace: {
     marginTop: theme.metrics.lg,
     color: theme.colors.text,
     fontFamily: theme.fonts.monospace,

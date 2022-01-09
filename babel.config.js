@@ -9,7 +9,7 @@ module.exports = function (api) {
           extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
           alias: {
             '@app': ['./src/'],
-            '^@testing-library$': './testing-library.config.ts',
+            '^@testing-library$': './testing-library.config.tsx',
           },
         },
       ],

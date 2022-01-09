@@ -6,7 +6,7 @@
     "paths": {
       "@app/*": ["src/*"],
       "@env": [".env.json"],
-      "@testing-library": ["testing-library.config.ts"]
+      "@testing-library": ["testing-library.config.tsx"]
     },
     "typeRoots": ["./node_modules/@types", "./src/types"]
   }

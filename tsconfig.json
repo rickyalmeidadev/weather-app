@@ -6,7 +6,8 @@
     "paths": {
       "@app/*": ["src/*"],
       "@env": [".env.json"],
-      "@testing-library": ["testing-library.config.tsx"]
+      "@testing-library": ["testing-library.config.tsx"],
+      "@tron": ["reactotron.config.ts"],
     },
     "typeRoots": ["./node_modules/@types", "./src/types"]
   }

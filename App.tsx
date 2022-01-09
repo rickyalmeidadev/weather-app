@@ -12,6 +12,10 @@ import store from '@app/store';
 import { getWeatherByCoords } from '@app/store/weather';
 import { makeStyles } from '@app/utils';
 
+if (__DEV__) {
+  require('@tron');
+}
+
 const App = () => {
   const styles = useStyles();
   const [loaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });

@@ -1,8 +1,13 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
+import tron from '@tron';
 import reducer from './reducer';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const enhancer = __DEV__
+  ? compose(applyMiddleware(thunk), tron.createEnhancer!())
+  : applyMiddleware(thunk);
+
+const store = createStore(reducer, enhancer);
 
 export type RootState = ReturnType<typeof store.getState>;
 

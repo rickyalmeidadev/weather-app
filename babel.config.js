@@ -10,6 +10,7 @@ module.exports = function (api) {
           alias: {
             '@app': ['./src/'],
             '^@testing-library$': './testing-library.config.tsx',
+            '^@tron$': './reactotron.config.ts',
           },
         },
       ],

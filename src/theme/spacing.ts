@@ -1,4 +1,4 @@
-const metrics = {
+const spacing = {
   xss: 2,
   xs: 4,
   sm: 8,
@@ -8,4 +8,4 @@ const metrics = {
   xxl: 40,
 };
 
-export default metrics;
+export default spacing;

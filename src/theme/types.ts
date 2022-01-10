@@ -13,7 +13,16 @@ export type Theme = {
     bold: string;
     monospace: string;
   };
-  metrics: {
+  spacing: {
+    xss: number;
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+    xxl: number;
+  };
+  sizes: {
     xss: number;
     xs: number;
     sm: number;

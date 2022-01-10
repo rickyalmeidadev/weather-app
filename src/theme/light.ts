@@ -1,5 +1,6 @@
 import fonts from './fonts';
-import metrics from './metrics';
+import spacing from './spacing';
+import sizes from './sizes';
 import type { Theme } from './types';
 
 const light: Theme = {
@@ -13,7 +14,8 @@ const light: Theme = {
     error: '#a94442',
   },
   fonts,
-  metrics,
+  spacing,
+  sizes,
 };
 
 export default light;

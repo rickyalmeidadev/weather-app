@@ -1,8 +1,11 @@
+import {
+  getCurrentPositionAsync,
+  requestForegroundPermissionsAsync,
+} from 'expo-location';
 import { getCurrentWeatherByCoords } from '@app/services/open-weather';
 import { WeatherActionTypes } from './weather.types';
 import type { ThunkAction } from 'redux-thunk';
 import type { RootState } from '@app/store';
-import type { Coords } from '@app/types/location';
 import type { WeatherAction } from './weather.types';
 
 type GetWeatherByCoordsThunkAction = ThunkAction<
@@ -12,12 +15,16 @@ type GetWeatherByCoordsThunkAction = ThunkAction<
   WeatherAction
 >;
 
-export const getWeatherByCoords =
-  (coords: Coords): GetWeatherByCoordsThunkAction =>
-  async dispatch => {
+export const getWeather = (): GetWeatherByCoordsThunkAction => {
+  return async dispatch => {
     dispatch({ type: WeatherActionTypes.FETCH_WEATHER_REQUEST });
     try {
-      const data = await getCurrentWeatherByCoords(coords);
+      const permission = await requestForegroundPermissionsAsync();
+      if (permission.status !== 'granted') {
+        throw new Error('You must grant permission to continue');
+      }
+      const position = await getCurrentPositionAsync();
+      const data = await getCurrentWeatherByCoords(position.coords);
       dispatch({
         type: WeatherActionTypes.FETCH_WEATHER_SUCCESS,
         payload: data,
@@ -29,3 +36,4 @@ export const getWeatherByCoords =
       });
     }
   };
+};

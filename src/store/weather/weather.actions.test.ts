@@ -1,12 +1,20 @@
+import { requestForegroundPermissionsAsync } from 'expo-location';
 import { rest } from 'msw';
 import MockedOpenWeather from '@app/mocks/open-weather';
 import server from '@app/mocks/server';
-import { getWeatherByCoords } from './weather.actions';
+import { getWeather } from './weather.actions';
 import { WeatherActionTypes } from './weather.types';
 import type { RootState } from '@app/store';
-import type { Coords } from '@app/types/location';
 
-const coords = {} as Coords;
+jest.mock('expo-location', () => ({
+  getCurrentPositionAsync: jest.fn(() => ({
+    coords: { latitude: 0, longitude: 0 },
+  })),
+  requestForegroundPermissionsAsync: jest.fn(() => ({
+    status: 'granted',
+  })),
+}));
+
 const getState = (): RootState => ({} as RootState);
 
 it('dispatches the correct actions when resolved', async () => {
@@ -18,7 +26,7 @@ it('dispatches the correct actions when resolved', async () => {
       payload: MockedOpenWeather.data,
     },
   ];
-  const thunk = getWeatherByCoords(coords);
+  const thunk = getWeather();
   await thunk(dispatch, getState, null);
   actions.forEach((action, index) => {
     const call = index + 1;
@@ -41,7 +49,27 @@ it('dispatches the correct actions when rejected', async () => {
       payload: MockedOpenWeather.error,
     },
   ];
-  const thunk = getWeatherByCoords(coords);
+  const thunk = getWeather();
+  await thunk(dispatch, getState, null);
+  actions.forEach((action, index) => {
+    const call = index + 1;
+    expect(dispatch).toHaveBeenNthCalledWith(call, action);
+  });
+});
+
+it('dispatches the correct actions when permission is denied', async () => {
+  (requestForegroundPermissionsAsync as jest.Mock).mockImplementationOnce(
+    () => ({ status: 'denied' }),
+  );
+  const dispatch = jest.fn();
+  const actions = [
+    { type: WeatherActionTypes.FETCH_WEATHER_REQUEST },
+    {
+      type: WeatherActionTypes.FETCH_WEATHER_FAILURE,
+      payload: new Error('You must grant permission to continue'),
+    },
+  ];
+  const thunk = getWeather();
   await thunk(dispatch, getState, null);
   actions.forEach((action, index) => {
     const call = index + 1;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getWeatherByCoords,
+  getWeather,
   selectWeatherDetails,
   selectWeatherInfo,
   selectWeatherUpdatedAt,
@@ -19,9 +19,7 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const latitude = -34.603722;
-    const longitude = -58.381592;
-    dispatch(getWeatherByCoords({ latitude, longitude }));
+    dispatch(getWeather());
   }, [dispatch]);
 
   return (

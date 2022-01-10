@@ -43,3 +43,7 @@ export const selectWeatherDetails = (state: RootState) => {
     sunset: data.sys.sunset,
   };
 };
+
+export const selectWeatherRequestStatus = (state: RootState) => {
+  return state.weather.status;
+};

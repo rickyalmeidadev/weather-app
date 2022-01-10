@@ -2,12 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
-import { StatusBar } from 'expo-status-bar';
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
+import { StatusBar } from '@app/components';
 import Navigation from '@app/routes';
 import store from '@app/store';
 
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <StatusBar style="auto" />
+        <StatusBar />
         <Navigation />
       </NavigationContainer>
     </Provider>

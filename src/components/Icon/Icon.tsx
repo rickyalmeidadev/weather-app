@@ -2,8 +2,8 @@ import React, { ComponentProps } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTheme } from '@app/hooks';
-import type { Theme } from '@app/theme';
 import type { TouchableOpacityProps } from 'react-native';
+import type { Theme } from '@app/theme';
 
 type MaterialCommunityIconProps = Omit<
   ComponentProps<typeof MaterialCommunityIcons>,
@@ -29,8 +29,15 @@ const Icon = ({ color, disabled, onPress, size, ...props }: IconProps) => {
   );
 
   if (typeof onPress === 'function') {
+    const hitSlop = {
+      top: theme.spacing.sm,
+      bottom: theme.spacing.sm,
+      left: theme.spacing.sm,
+      right: theme.spacing.sm,
+    };
+
     return (
-      <TouchableOpacity onPress={onPress} disabled={disabled}>
+      <TouchableOpacity disabled={disabled} hitSlop={hitSlop} onPress={onPress}>
         {icon}
       </TouchableOpacity>
     );

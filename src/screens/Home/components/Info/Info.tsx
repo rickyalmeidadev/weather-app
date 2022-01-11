@@ -7,9 +7,9 @@ import {
   selectWeatherRequestError,
   selectWeatherRequestStatus,
 } from '@app/store/weather';
-import { useStatusAnimation } from '../../hooks';
-import useStyles from './Info.styles';
 import { toDegree } from '@app/utils/formatters';
+import { useStatusAnimation } from './hooks';
+import useStyles from './Info.styles';
 
 const INPUT_RANGE = [0, 1];
 const OUTPUT_LIMIT = 26;
@@ -48,7 +48,7 @@ const Info = () => {
     {
       translateX: animatedValue.interpolate({
         inputRange: INPUT_RANGE,
-        outputRange: [0, value],
+        outputRange: [value, 0],
       }),
     },
   ];
@@ -60,7 +60,7 @@ const Info = () => {
   const activityIndicatorAnimatedStyle = {
     opacity: animatedValue.interpolate({
       inputRange: INPUT_RANGE,
-      outputRange: [1, 0],
+      outputRange: [0, 1],
     }),
     transform: makeTransform(-OUTPUT_LIMIT),
   };

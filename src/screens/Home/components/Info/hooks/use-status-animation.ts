@@ -15,8 +15,8 @@ const useStatusAnimation = (status: Status) => {
   const value = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const show = makeAnimation(value, 0);
-    const hide = makeAnimation(value, 1);
+    const show = makeAnimation(value, 1);
+    const hide = makeAnimation(value, 0);
 
     if (status === 'fetching') {
       show.start();

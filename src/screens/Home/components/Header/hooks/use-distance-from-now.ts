@@ -4,10 +4,10 @@ import { getDistanceFromNow } from '@app/utils/date';
 const ONE_MINUTE = 1000 * 60;
 
 const useDistanceFromNow = (datetime: number | undefined) => {
-  const [distance, setDistance] = useState('');
+  const [distance, setDistance] = useState('-');
 
   useEffect(() => {
-    const id = setInterval(() => {
+    const callback = () => {
       if (typeof datetime !== 'number') {
         setDistance('-');
         return;
@@ -15,8 +15,10 @@ const useDistanceFromNow = (datetime: number | undefined) => {
 
       const date = new Date(datetime * 1000);
       setDistance(getDistanceFromNow(date));
-    }, ONE_MINUTE);
+    };
 
+    callback();
+    const id = setInterval(callback, ONE_MINUTE);
     return () => {
       clearInterval(id);
     };

@@ -1,13 +1,15 @@
 import { makeStyles } from '@app/utils';
+import {
+  getBottomSpace,
+  getStatusBarHeight,
+} from 'react-native-iphone-x-helper';
 
 const useStyles = makeStyles(({ theme }) => ({
-  container: {
+  root: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  monospace: {
-    fontFamily: theme.fonts.monospace,
+    backgroundColor: theme.colors.background,
+    paddingTop: getStatusBarHeight(),
+    paddingBottom: getBottomSpace(),
   },
 }));
 

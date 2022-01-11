@@ -1,21 +1,12 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getWeather,
-  selectWeatherDetails,
-  selectWeatherInfo,
-  selectWeatherUpdatedAt,
-} from '@app/store/weather';
+import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { getWeather } from '@app/store/weather';
+import { Details, Header, Info } from './components';
 import useStyles from './Home.styles';
 
 const HomeScreen = () => {
   const styles = useStyles();
-
-  const updatedAt = useSelector(selectWeatherUpdatedAt);
-  const info = useSelector(selectWeatherInfo);
-  const details = useSelector(selectWeatherDetails);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,10 +14,10 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.monospace}>
-        {JSON.stringify({ updatedAt, info, details }, null, 2)}
-      </Text>
+    <View style={styles.root}>
+      <Header />
+      <Info />
+      <Details />
     </View>
   );
 };

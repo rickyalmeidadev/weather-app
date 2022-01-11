@@ -8,10 +8,9 @@ const dark: Theme = {
   colors: {
     primary: '#ec6e4c',
     background: '#111111',
-    text: '#ffffff',
+    surface: '#222222',
+    text: '#f2f2f1',
     muted: '#8a8a8a',
-    success: '#5cb85c',
-    error: '#a94442',
   },
   fonts,
   spacing,

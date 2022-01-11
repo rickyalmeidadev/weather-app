@@ -8,10 +8,9 @@ const light: Theme = {
   colors: {
     primary: '#ec6e4c',
     background: '#ffffff',
-    text: '#111111',
+    surface: '#eeeeee',
+    text: '#38383a',
     muted: '#8a8a8a',
-    success: '#5cb85c',
-    error: '#a94442',
   },
   fonts,
   spacing,

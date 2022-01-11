@@ -3,10 +3,9 @@ export type Theme = {
   colors: {
     primary: string;
     background: string;
+    surface: string;
     text: string;
     muted: string;
-    success: string;
-    error: string;
   };
   fonts: {
     regular: string;

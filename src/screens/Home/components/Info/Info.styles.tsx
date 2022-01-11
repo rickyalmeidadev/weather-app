@@ -6,6 +6,9 @@ const useStyles = makeStyles(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  margin: {
+    marginBottom: theme.spacing.xxl,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -14,7 +17,7 @@ const useStyles = makeStyles(({ theme }) => ({
   icon: {
     width: 200,
     height: 200,
-    marginVertical: -theme.spacing.xl,
+    marginVertical: -theme.spacing.xxl,
   },
 }));
 

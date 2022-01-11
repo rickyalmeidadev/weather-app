@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux';
 import { ActivityIndicator, Icon, Spacer, Text } from '@app/components';
 import {
   selectWeatherInfo,
+  selectWeatherRequestError,
   selectWeatherRequestStatus,
 } from '@app/store/weather';
 import { useStatusAnimation } from '../../hooks';
 import useStyles from './Info.styles';
-import { toDegree } from '@app/utils/temperature';
+import { toDegree } from '@app/utils/formatters';
 
 const INPUT_RANGE = [0, 1];
 const OUTPUT_LIMIT = 26;
@@ -17,11 +18,22 @@ const Info = () => {
   const styles = useStyles();
   const info = useSelector(selectWeatherInfo);
   const status = useSelector(selectWeatherRequestStatus);
+  const error = useSelector(selectWeatherRequestError);
   const animatedValue = useStatusAnimation(status);
 
-  if (!info) {
+  if (status === 'error' && error) {
     return (
-      <View style={styles.root}>
+      <View style={[styles.root, styles.margin]}>
+        <Icon name="cloud-off-outline" color="muted" size="xxl" />
+        <Spacer y="md" />
+        <Text color="muted">{error.message}</Text>
+      </View>
+    );
+  }
+
+  if (status === 'idle' || status === 'loading' || !info) {
+    return (
+      <View style={[styles.root, styles.margin]}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -58,7 +70,7 @@ const Info = () => {
       <Text font="bold" size="xl">
         {info.city}
       </Text>
-      <Spacer y="md" />
+      <Spacer y="sm" />
       <Text color="muted" size="lg">
         {info.description}
       </Text>
@@ -74,7 +86,7 @@ const Info = () => {
           <ActivityIndicator size="large" />
         </Animated.View>
       </View>
-      <Spacer y="md" />
+      <Spacer y="sm" />
       <View style={styles.row}>
         <Text color="muted" size="lg">
           {max}

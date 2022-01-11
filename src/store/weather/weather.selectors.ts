@@ -47,3 +47,7 @@ export const selectWeatherDetails = (state: RootState) => {
 export const selectWeatherRequestStatus = (state: RootState) => {
   return state.weather.status;
 };
+
+export const selectWeatherRequestError = (state: RootState) => {
+  return state.weather.error;
+};

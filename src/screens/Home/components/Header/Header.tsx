@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon, Text } from '@app/components';
@@ -7,7 +7,7 @@ import {
   selectWeatherRequestStatus,
   selectWeatherUpdatedAt,
 } from '@app/store/weather';
-import { getDistanceFromNow } from '@app/utils/date';
+import { useDistanceFromNow } from './hooks';
 import useStyles from './Header.styles';
 
 const Header = () => {
@@ -15,19 +15,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const datetime = useSelector(selectWeatherUpdatedAt);
   const status = useSelector(selectWeatherRequestStatus);
+  const distance = useDistanceFromNow(datetime);
 
   const onGetWeather = () => {
     dispatch(getWeather());
   };
-
-  const distance = useMemo(() => {
-    if (typeof datetime !== 'number') {
-      return '-';
-    }
-
-    const date = new Date(datetime * 1000);
-    return getDistanceFromNow(date);
-  }, [datetime]);
 
   const disabled = status === 'loading' || status === 'fetching';
 

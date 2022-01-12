@@ -6,15 +6,6 @@ import { getWeather } from './weather.actions';
 import { WeatherActionTypes } from './weather.types';
 import type { RootState } from '@app/store';
 
-jest.mock('expo-location', () => ({
-  getCurrentPositionAsync: jest.fn(() => ({
-    coords: { latitude: 0, longitude: 0 },
-  })),
-  requestForegroundPermissionsAsync: jest.fn(() => ({
-    status: 'granted',
-  })),
-}));
-
 const getState = (): RootState => ({} as RootState);
 
 it('dispatches the correct actions when resolved', async () => {

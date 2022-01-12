@@ -6,9 +6,9 @@ const data: OpenWeatherResponse = {
   base: 'stations',
   main: {
     temp: 17.86,
-    feels_like: 18.18,
-    temp_min: 16.42,
-    temp_max: 18.79,
+    feels_like: 22.18,
+    temp_min: 14.42,
+    temp_max: 24.79,
     pressure: 993,
     humidity: 95,
   },

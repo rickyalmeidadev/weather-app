@@ -8,7 +8,7 @@ import type { RootState } from '@app/store';
 
 type Props = { children: ReactNode };
 
-export const makeReduxWrapper = (state: Partial<RootState>) => {
+export const makeReduxWrapper = (state?: Partial<RootState>) => {
   return ({ children }: Props) => {
     const store = createStore(reducer, state, applyMiddleware(thunk));
     return <Provider store={store}>{children}</Provider>;

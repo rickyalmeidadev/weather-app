@@ -32,6 +32,7 @@ const Header = () => {
         <Text size="sm">{distance}</Text>
       </View>
       <Icon
+        accessibilityLabel="Refresh weather"
         name="refresh"
         color="primary"
         onPress={onGetWeather}

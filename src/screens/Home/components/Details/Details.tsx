@@ -53,17 +53,25 @@ const Details = () => {
       keyExtractor={({ label }) => label}
       numColumns={3}
       bounces={false}
-      renderItem={({ item: { icon, label, value } }) => (
-        <View style={styles.card}>
-          <Icon name={icon} color="primary" size="xs" />
-          <Spacer y="xs" />
-          <Text size="sm">{value}</Text>
-          <Spacer y="xs" />
-          <Text color="muted" size="xs">
-            {label}
-          </Text>
-        </View>
-      )}
+      renderItem={({ item: { icon, label, value } }) => {
+        const accessibilityLabel = `Icon for ${label.toLocaleLowerCase()}`;
+        return (
+          <View style={styles.card}>
+            <Icon
+              accessibilityLabel={accessibilityLabel}
+              name={icon}
+              color="primary"
+              size="xs"
+            />
+            <Spacer y="xs" />
+            <Text size="sm">{value}</Text>
+            <Spacer y="xs" />
+            <Text color="muted" size="xs">
+              {label}
+            </Text>
+          </View>
+        );
+      }}
     />
   );
 };

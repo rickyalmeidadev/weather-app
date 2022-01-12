@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { ActivityIndicator, Icon, Spacer, Text } from '@app/components';
 import {
   selectWeatherInfo,
-  selectWeatherRequestError,
   selectWeatherRequestStatus,
 } from '@app/store/weather';
 import { toDegree } from '@app/utils/formatters';
@@ -18,25 +17,10 @@ const Info = () => {
   const styles = useStyles();
   const info = useSelector(selectWeatherInfo);
   const status = useSelector(selectWeatherRequestStatus);
-  const error = useSelector(selectWeatherRequestError);
   const animatedValue = useStatusAnimation(status);
 
-  if (status === 'error' && error) {
-    return (
-      <View style={[styles.root, styles.margin]}>
-        <Icon name="cloud-off-outline" color="muted" size="xxl" />
-        <Spacer y="md" />
-        <Text color="muted">{error.message}</Text>
-      </View>
-    );
-  }
-
-  if (status === 'idle' || status === 'loading' || !info) {
-    return (
-      <View style={[styles.root, styles.margin]}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+  if (!info) {
+    return null;
   }
 
   const uri = `http://openweathermap.org/img/wn/${info.icon}@4x.png`;
@@ -74,7 +58,12 @@ const Info = () => {
       <Text color="muted" size="lg">
         {info.description}
       </Text>
-      <Image style={styles.icon} source={{ uri }} resizeMode="contain" />
+      <Image
+        accessibilityLabel={`Icon for ${info.description}`}
+        style={styles.icon}
+        source={{ uri }}
+        resizeMode="contain"
+      />
       <View style={styles.row}>
         <Animated.View style={temperatureAnimatedStyle}>
           <Text color="primary" font="bold" size="xxl">
@@ -91,12 +80,22 @@ const Info = () => {
         <Text color="muted" size="lg">
           {max}
         </Text>
-        <Icon name="thermometer-plus" color="muted" size="xss" />
+        <Icon
+          accessibilityLabel="Icon for maximum temperature"
+          name="thermometer-plus"
+          color="muted"
+          size="xss"
+        />
         <Spacer x="md" />
         <Text color="muted" size="lg">
           {min}
         </Text>
-        <Icon name="thermometer-minus" color="muted" size="xss" />
+        <Icon
+          accessibilityLabel="Icon for minimum temperature"
+          name="thermometer-minus"
+          color="muted"
+          size="xss"
+        />
       </View>
     </View>
   );

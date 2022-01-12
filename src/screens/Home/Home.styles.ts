@@ -11,6 +11,10 @@ const useStyles = makeStyles(({ theme }) => ({
     paddingTop: getStatusBarHeight(),
     paddingBottom: getBottomSpace(),
   },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }));
 
 export default useStyles;

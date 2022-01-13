@@ -29,25 +29,25 @@ To run this project, you will need to add the following environment variable to 
 Clone the project:
 
 ```bash
-  git clone https://github.com/rickyalmeidadev/weather-app.git
+git clone https://github.com/rickyalmeidadev/weather-app.git
 ```
 
 Enter the project directory:
 
 ```bash
-  cd weather-app
+cd weather-app
 ```
 
 Install dependencies:
 
 ```bash
-  yarn install
+yarn install
 ```
 
 Start the Expo server:
 
 ```bash
-  yarn start
+yarn start
 ```
 
 Then the browser will automatically open at the address http://localhost:19002 where
@@ -61,9 +61,9 @@ or [App Store](https://apps.apple.com/br/app/expo-go/id982107779).
 If you have an Android emulator or iOS simulator and want to use it, you can use the commands:
 
 ```bash
-  yarn android
-  # or
-  yarn ios
+yarn android
+# or
+yarn ios
 ```
 
 ## Running the tests
@@ -71,13 +71,18 @@ If you have an Android emulator or iOS simulator and want to use it, you can use
 To run the tests, run the following command:
 
 ```bash
-  yarn test
+yarn test
+```
+
+In order to see the coverage report, you can run:
+```bash
+yarn test:coverage
 ```
 
 You can also run the tests in watch mode:
 
 ```bash
-  yarn test:watch
+yarn test:watch
 ```
 
 ## Author

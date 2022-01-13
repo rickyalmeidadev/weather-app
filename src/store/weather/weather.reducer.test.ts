@@ -1,7 +1,7 @@
 import reducer, { INITIAL_STATE } from './weather.reducer';
 import { WeatherActionTypes } from './weather.types';
 import type { WeatherAction, WeatherState } from './weather.types';
-import { OpenWeatherResponse } from '@app/types/open-weather';
+import type { OpenWeatherResponse } from '@app/types/open-weather';
 
 it('returns the initial state', () => {
   const action = {} as WeatherAction;

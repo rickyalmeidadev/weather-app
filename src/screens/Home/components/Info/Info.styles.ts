@@ -1,4 +1,4 @@
-import { makeStyles } from '@app/utils';
+import { makeStyles } from '@app/utils/styles';
 
 const useStyles = makeStyles(({ theme }) => ({
   root: {

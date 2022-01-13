@@ -1,8 +1,8 @@
-import { makeStyles } from '@app/utils';
 import {
   getBottomSpace,
   getStatusBarHeight,
 } from 'react-native-iphone-x-helper';
+import { makeStyles } from '@app/utils/styles';
 
 const useStyles = makeStyles(({ theme }) => ({
   root: {

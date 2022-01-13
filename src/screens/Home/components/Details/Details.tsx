@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react';
+import { View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectWeatherDetails } from '@app/store/weather';
 import { GridList, Icon, Spacer, Text } from '@app/components';
+import { getScheduleFromDatetime } from '@app/utils/date';
 import {
   toDegree,
   toHectoPascal,
   toMeterPerSecond,
   toPercentage,
 } from '@app/utils/formatters';
-import { getScheduleFromDatetime } from '@app/utils/date';
-import { View } from 'react-native';
 import useStyles from './Details.styles';
 
 type WeatherDetails = NonNullable<ReturnType<typeof selectWeatherDetails>>;

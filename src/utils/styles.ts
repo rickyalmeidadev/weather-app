@@ -16,7 +16,7 @@ type FactoryParams = {
 
 type Factory<T> = (params: FactoryParams) => T;
 
-const makeStyles = <T extends StyleSheet>(styles: Factory<T> | T) => {
+export const makeStyles = <T extends StyleSheet>(styles: Factory<T> | T) => {
   return () => {
     const dimensions = useWindowDimensions();
     const theme = useTheme();
@@ -25,5 +25,3 @@ const makeStyles = <T extends StyleSheet>(styles: Factory<T> | T) => {
       : styles;
   };
 };
-
-export default makeStyles;

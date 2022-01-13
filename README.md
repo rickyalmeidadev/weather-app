@@ -18,20 +18,6 @@ the current address and weather data for the region.
 - [Axios](https://axios-http.com/)
 - [date-fns](https://date-fns.org/)
 
-## Preview
-
-If you are an Android user, you can check the app right now on your own device.
-
-Make sure you have Expo Client installed, you can
-get it from the [Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent).
-
-<img
-  src="https://user-images.githubusercontent.com/60705947/149240959-0b046ded-b9f7-41ac-bc92-79d8d14fcb63.png"
-  alt="QRCode"
-  width="320"
-  height="320"
-/>
-
 ## Environment variables
 
 To run this project, you will need to add the following environment variable to the `.env` file:

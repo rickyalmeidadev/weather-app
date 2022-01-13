@@ -12,8 +12,12 @@ const useStyles = makeStyles(({ theme }) => ({
     paddingBottom: getBottomSpace(),
   },
   center: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  error: {
+    marginBottom: theme.spacing.xxl * 2,
   },
 }));
 

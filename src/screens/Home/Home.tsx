@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicator, Icon, Spacer, Text } from '@app/components';
+import { ActivityIndicator, Icon, Text } from '@app/components';
 import {
   getWeather,
   selectWeatherRequestError,
@@ -22,10 +22,12 @@ const HomeScreen = () => {
 
   if (status === 'error' && error) {
     return (
-      <View style={[styles.root, styles.center]}>
-        <Icon name="cloud-off-outline" color="muted" size="xxl" />
-        <Spacer y="md" />
-        <Text color="muted">{error.message}</Text>
+      <View style={styles.root}>
+        <Header />
+        <View style={[styles.center, styles.error]}>
+          <Icon name="cloud-off-outline" color="muted" size="xxl" />
+          <Text color="muted">{error.message}</Text>
+        </View>
       </View>
     );
   }

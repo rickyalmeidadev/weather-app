@@ -8,8 +8,10 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "jest",
+    "test:commit": "jest --bail --findRelatedTests --passWithNoTests",
     "test:coverage": "jest --coverage && open coverage/lcov-report/index.html",
     "test:watch": "jest --watch",
+    "lint:commit": "eslint --fix",
     "prepare": "husky install"
   },
   "dependencies": {

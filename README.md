@@ -22,7 +22,11 @@ the current address and weather data for the region.
 
 To run this project, you will need to add the following environment variable to the `.env` file:
 
-`OPEN_WEATHER_KEY`
+```.env
+OPEN_WEATHER_KEY=your-open-weather-key
+```
+
+Visit the [Open Weather how to start](https://openweathermap.org/appid) to create an account and get your key.
 
 ## Running locally
 
